@@ -35,14 +35,8 @@ impl Game {
         }
         *is_swing = false;
         let out_left = self.ball < -HALF_PADDLE_SIZE;
-        // let out_left = &self.strike_back();
         let out_right = 1.0 + HALF_PADDLE_SIZE < self.ball;
         !out_left && !out_right
-        // if self.ball > 1.0 {
-        //   return false;
-        // }
-        // true;
-        // 0.0 <= self.ball && self.ball <= 1.0
     }
 
     pub fn strike_back(&mut self) {
@@ -77,7 +71,6 @@ fn game_loop(game: &mut Game, is_swing: &Mutex<bool>) {
         if !game.update(is_swing){
             break;
         }
-        // game.strike_back();
         draw(game.ball);
         time += Duration::from_nanos(16_666_667);
         if let Ok(dur) = time.duration_since(SystemTime::now()) {
